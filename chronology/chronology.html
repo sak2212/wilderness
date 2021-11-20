@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>chronology scatterplot</title>
+		<script type="text/javascript" src="../d3.js"></script>
+		<style type="text/css">
+			/* No style rules here yet */		
+		</style>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+
+            // chart width and height
+			var w = 1000;
+			var h = 800;
+			var padding = 40;
+			
+			var dataset, xScale, yScale, xAxis, yAxis, cScale;  // empty
+
+            //loading data -- CONSOLE ERROR "Uncaught (in promis) TypeError"
+			d3.csv("wild-per-year.csv")
+            .then(function(data) {
+				console.log(data)
+
+                xScale = d3.scaleLinear()
+                    .domain([
+                        0,
+                        d3.max(data, function(d){
+                            return parseFloat(d["year"]);
+                        })
+                    ])
+                    .range([padding, w - padding]);
+
+                    // console.log(d3.max(data, function(d) {return d["year"]}))
+                
+                yScale = d3.scaleLinear()
+                    .domain([
+                        0,
+                        d3.max(data, function(d){
+                            return parseInt(d["acres_designated"]);
+                        })
+                    .range([h - padding, padding])
+                    ]);
+                
+                var rScale = d3.scaleLinear()
+                    .domain([
+                        0,
+                        d3.max(data, function(d){
+                            return parseInt(d["acres_designated"]);
+                        })
+                    ])
+                    .range([2,10]);
+                   
+                    
+                //define X axis
+				xAxis = d3.axisBottom()
+								  .scale(xScale)
+								  .ticks(48) //45 values in array
+
+				//define Y axis
+				yAxis = d3.axisLeft()
+								  .scale(yScale)
+								  .ticks(36);
+                                  
+
+				//create SVG element
+				var svg = d3.select("body")
+							.append("svg")
+							.attr("width", w)
+							.attr("height", h);
+                
+
+                //create circles
+                svg.selectAll("circle")
+				   .data(data)
+				   .enter()
+				   .append("circle")
+				   .attr("cx", function(d) {
+				   		return xScale(d["year"]);
+				   })
+				   .attr("cy", function(d) {
+				   		return yScale(d["acres_designated"]);
+				   })
+				   .attr("r", function(d){
+				   		return rScale(d["year"])
+                    })
+                
+                // HOW DO I CHANGE THE COLOR OF THE CIRCLES BASED ON PARTY?
+                //    .style("color", funcion(d){
+                //        if(d.party= Democratic){
+                //            return "blue"
+                //        }else{
+                //            return "red"
+                //        }
+                //    })
+            
+            });
+
+        </script>
+	</body>
+</html>

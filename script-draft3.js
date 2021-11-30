@@ -45,7 +45,7 @@ d3.csv("chronology/wild-per-year.csv")
                 return parseInt(d["acres-designated"].split(",").join(""));
             })
         ])
-        .range([2,100]);
+        .range([1,50]);
        
         
     //define X axis

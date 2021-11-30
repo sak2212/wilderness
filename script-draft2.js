@@ -54,7 +54,7 @@ d3.csv("units/wild-units.csv")
                 return parseInt(d["Total_acres"].split(",").join(""));
             })
         ])
-        .range([1,100]);
+        .range([1,25]);
        
         
     //define X axis

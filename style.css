@@ -66,12 +66,12 @@ h1 {
 }
 
 a {
+    color: #46230a;
     font-family: 'IM Fell English', serif;
     font-size: 1em;
     line-height: 3em;
     text-align: center;
     text-decoration: none;
-    color: black;
 }
 
 h2 {

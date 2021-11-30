@@ -7,48 +7,60 @@
     <title>American Wilderness</title>
 
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="d3.js"></script>
+    <script src="script-draft.js"></script>
+
 
 </head>
 <body>
+
     <header>    
         <h1>American Wilderness</h1>
     </header>
     <nav class="nav-fixed-top">
         <ul class="nav-bar"> 
             <li><a href="#introduction">Introduction</a></li>
-            <li><a href="#states">States</a></li>
             <li><a href="#chronology">Chronology</a></li>
+            <li><a href="#states">States</a></li>
+            <li><a href="#nation">Nation</a></li>
             <li><a href="#data">Data</a></li>
             <li><a href="#about">About</a></li>
         </ul>
     </nav>
     <div class="container">
-        <section class="introduction">
+        <section id="introduction">
             <h2>Introduction</h2>
             <p>Federal Lands...</p>
-            <div class="bar1"></div>
             <p>Wilderness...untrammeled, untamed...</p>
-            <div class="bar2"></div>
         </section>
 
-        <section class="states">
-            <h2>States</h2>
-            <p>The following charts break down the percentages of public lands owned and managed by various federal agencies. The inner ring visualizes how much of the public lands of that state are federally-designated wilderness areas.</p>
-            <div class="donuts"></div>
-        </section>
-
-        <section class="chronology">
+        <section id="chronology">
             <h2>Chronology</h2>
             <p>...</p>
-            <div class="scatterplot"></div>
+            <div id="scatterplot"></div>
         </section>
 
-        <section class="data">
+        <section id="states">
+            <h2>States</h2>
+            <p>The following charts break down the percentages of public lands owned and managed by various federal agencies. The inner ring visualizes how much of the public lands of that state are federally-designated wilderness areas.</p>
+            <div id="donuts"></div>
+        </section>
+
+        
+        <section id="nation">
+            <h2>Nation</h2>
+            <div id="bar2"></div>
+            <p>...</p>
+            <div id="bar1"></div>
+        </section>
+
+
+        <section id="data">
             <h2>Data</h2>
             <p>...</p>
         </section>
 
-        <section class="about">
+        <section id="about">
             <h2>About</h2>
             <p>This project was researched, designed, and developed by Spenser A. Krut for two visual studies electives at Columbia GSAPP: Coding for Spatial Practices with Celeste Layne and Data Visualization For Architecture, Urbanism, and the Humanities with Jia Zhang.</p>
             <p>Published and last updated on December 22, 2021. </p>

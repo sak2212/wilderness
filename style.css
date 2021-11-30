@@ -22,6 +22,7 @@ DOD - #f2d59a
 html, body {
     height: 100%;
     background-color: #fbf6e9;
+    scroll-behavior: smooth;
 }
 
 header, nav {
@@ -90,22 +91,27 @@ p {
 }
 
 /*SECTIONS*/
-.introduction {
+#introduction {
 
 }
 
-.states {
+#chronology {
+    
+}
+
+#states {
+    font-size: .5em;
+    font-style: italic;
+}
+
+#nation {
 
 }
 
-.chronology {
+#data {
 
 }
 
-.data {
-
-}
-
-.about {
+#about {
 
 }

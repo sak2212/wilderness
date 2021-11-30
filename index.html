@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="d3.js"></script>
+    <script src="script-draft3.js"></script>
+    <script src="script-draft2.js"></script>
     <script src="script-draft.js"></script>
 
 
@@ -17,6 +19,7 @@
     <header>    
         <h1>American Wilderness</h1>
     </header>
+
     <nav class="nav-fixed-top">
         <ul class="nav-bar"> 
             <li><a href="#introduction">Introduction</a></li>
@@ -27,6 +30,7 @@
             <li><a href="#about">About</a></li>
         </ul>
     </nav>
+
     <div class="container">
         <section id="introduction">
             <h2>Introduction</h2>
@@ -34,36 +38,55 @@
             <p>Wilderness...untrammeled, untamed...</p>
         </section>
 
+        <br><br>
+
         <section id="chronology">
             <h2>Chronology</h2>
             <p>...</p>
-            <div id="scatterplot"></div>
+            <p class="chart-title">Acres designated since 1964</p>
+            <div id="chronology-plot"></div>
+            <p class="chart-title">Individual units of wilderness designated since 1964</p>
+            <div id="units-plot"></div>
         </section>
+
+        <br><br>
 
         <section id="states">
             <h2>States</h2>
             <p>The following charts break down the percentages of public lands owned and managed by various federal agencies. The inner ring visualizes how much of the public lands of that state are federally-designated wilderness areas.</p>
+            <img src="images/color-legend.png" alt="color legend" width=90%% height=auto>
+            <br><br>
+            <p>[insert filter dropdown here]</p>
             <div id="donuts"></div>
         </section>
 
-        
+        <br><br>
+
         <section id="nation">
             <h2>Nation</h2>
-            <div id="bar2"></div>
             <p>...</p>
+            <p class="chart-title">Wilderness designations per federal agency's land holdings</p>
+            <div id="bar2"></div>
+            <p class="chart-title">Land ownership per federal agency</p>
             <div id="bar1"></div>
         </section>
 
+        <br><br>
 
         <section id="data">
             <h2>Data</h2>
             <p>...</p>
+            <p>...</p>
         </section>
+
+        <br><br>
 
         <section id="about">
             <h2>About</h2>
             <p>This project was researched, designed, and developed by Spenser A. Krut for two visual studies electives at Columbia GSAPP: Coding for Spatial Practices with Celeste Layne and Data Visualization For Architecture, Urbanism, and the Humanities with Jia Zhang.</p>
-            <p>Published and last updated on December 22, 2021. </p>
+            <p>Published and last updated on December 22, 2021.</p>
+            <br>
+            <a href="#introduction"><em>_go to top</em></a>
         </section>
 
     </div>

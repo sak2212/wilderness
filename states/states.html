@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <title>basic located</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    
+<script type="text/javascript"src="https://d3js.org/d3.v5.min.js"></script>
+  
+    <style>
+        /* no styles here */
+    </style>
+
+</head>
+
+<body>
+    <div id="good"></div>
+    <div id="bad"></div>
+
+	<script type="text/javascript"> 
+        var w = 200
+        var h = 200
+        var margin = 20
+        var radius = Math.min(w, h) / 2 - margin
+        
+        // loading data from two files 
+        var dataset1 = d3.csv("agency-per-state.csv")
+        var dataset2 = d3.csv("wild-per-state.csv")
+        
+        Promise.all([dataset1,dataset2])
+
+        .then(function(data){
+            console.log(data[0])
+            console.log(data[1])
+
+for(var i = 0; i<data[0].length; i++){
+        var svg = d3.select("body").append("svg").attr("width",w).attr("height",h)
+
+
+var colors1 = [
+    "#c48b3a", //BLM
+    "#927c41", //FS
+    "#9d6b42", //FWS
+    "#bc422a", //NPS
+    "#f2d59a",  //DOD
+    "blue"
+]
+var colors2 = ["#000000", "#dddddd"] 
+
+pieChart(data[0][i],"outer",60,radius,svg,colors1,200)
+pieChart(data[1][i],"inner",40,60,svg,colors2,200)
+
+// console.log(data[0][i]["State"])
+// console.log(data[1][i]["State"])
+
+svg.append("text")
+    .text(data[0][i]["State"])
+    .attr("x", w/2)
+    .attr("y", h/2)
+    .attr("text-anchor", "middle")
+
+    
+    
+
+}
+
+        
+    })
+
+
+    function pieChart(data,className,inner,outer,svg,colors,x){
+            //  console.log(data)  
+        var pie = d3.pie();
+        var arc = d3.arc().innerRadius(inner).outerRadius(outer)
+      
+        var array = []
+        for(var d in data){
+            // console.log(d,data[d])
+			//statement to filter out column headings
+			if(d!="State"){
+            	array.push(data[d])
+			}
+        }
+		
+        var arcs = svg.selectAll("g.arc") //WHAT IS g.arc?
+                .data(pie(array))
+                .enter()
+                .append("g")
+                .attr("class",className)
+                .attr("transform", "translate(" + x/2+ "," + h/2 + ")")
+                .append("path")
+                .attr("fill", function(d, i) {
+                    return colors[i];
+                })
+                // .attr("stroke","#ffffff")
+                // .attr("stroke-width",2)
+                .attr("d", arc);
+                
+        }
+
+</script>
+</body>
+</html>

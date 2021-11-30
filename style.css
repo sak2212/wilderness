@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Uchen&display=swap');
+
+/*
+COLORS
+background - #fbf6e9
+BLM - #c48b3a
+FS - #927c41
+FWS - #9d6b42
+NPS - #bc422a
+DOD - #f2d59a
+*/
+
+/*reset to remove html element styling*/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/*overall page styling*/
+html, body {
+    height: 100%;
+    background-color: #fbf6e9;
+}
+
+header, nav {
+    background-color: white;
+}
+
+/* HOW DO I MAKE THE MENU FIXED? */
+/* .nav-fixed-top {
+    position: fixed;
+}  */
+
+ul.nav-bar {
+    list-style: none;
+    height: 100%;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.container {
+    height: 100%;
+    width: 50%;
+    max-width: calc(1200px - (30px * 2));
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-left: 30px;
+    align-content: center;
+}
+
+
+/*TYPE*/
+h1 {
+    font-family: 'IM Fell English', serif;
+    font-size: 2em;
+    line-height: 2em;
+    text-align: center;
+}
+
+a {
+    font-family: 'IM Fell English', serif;
+    font-size: 1em;
+    line-height: 3em;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+h2 {
+    font-family: 'IM Fell English', serif;
+    font-size: 1em;
+    line-height: 2em;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+p {
+    font-family: 'Uchen', serif;
+    font-size: 1em;
+    line-height: 1.25em;
+    margin-bottom: 2em;
+}
+
+/*SECTIONS*/
+.introduction {
+
+}
+
+.states {
+
+}
+
+.chronology {
+
+}
+
+.data {
+
+}
+
+.about {
+
+}

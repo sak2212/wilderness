@@ -16,11 +16,19 @@
 			var w = 1000;
 			var h = 600;
 			var padding = 40;
+
+            var colorDictionary = {
+                    BLM: "#c48b3a",
+                    FS: "#927c41",
+                    FWS: "#9d6b42",
+                    NPS: "#bc422a",
+                    DOD: "#f2d59a"
+                }
 			
 			var dataset, xScale, yScale, xAxis, yAxis, cScale;  // empty
 
             //loading data 
-			d3.csv("wild-per-year.csv")
+			d3.csv("wild-units.csv")
             .then(function(data) {
 				// console.log(data);
 
@@ -39,9 +47,9 @@
                 
                 yScale = d3.scaleLinear() 
                     .domain([
-                        -700,
+                        0,
                         d3.max(data, function(d){ 
-                            return parseInt(d["acres-designated"].split(",").join(""));
+                            return Math.sqrt(parseInt(d["Total_acres"].split(",").join("")));
                         })
                     ])
                     .range([h - padding, padding])
@@ -49,15 +57,16 @@
                 
                 var rScale = d3.scaleLinear()
                     .domain([
-                        d3.min(data, function(d){
-                            return parseInt(d["acres-designated"].split(",").join(""));
-                        })
+                    //     d3.min(data, function(d){
+                    //         return parseInt(d["Total_acres"].split(",").join(""));
+                    //     })
+                        0
                         ,
                         d3.max(data, function(d){
-                            return parseInt(d["acres-designated"].split(",").join(""));
+                            return parseInt(d["Total_acres"].split(",").join(""));
                         })
                     ])
-                    .range([2,100]);
+                    .range([1,100]);
                    
                     
                 //define X axis
@@ -83,28 +92,30 @@
 				   .data(data)
 				   .enter()
 				   .append("circle")
-				   .attr("cx", function(d) {
+				   .attr("cx", function(d, i) {
                     // console.log(parseInt(d["year"]))
-                        return xScale(parseInt(d["year"]));
+                        // return xScale(parseInt(d["year"]));
+                        if (i%2) {
+                            return xScale(parseInt(d["year"]))
+                        }else{
+                            return xScale(parseInt(d["year"]))+4
+                        }
 				   })
 				   .attr("cy", function(d, i) { //WHY ADD i HERE?
-                        return yScale(d["acres-designated"].split(",").join(""));
+                        return yScale(Math.sqrt(d["Total_acres"].split(",").join("")));
 				   })
 				   .attr("r", function(d){
                     // console.log([d["acres-designated"], rScale(d["acres-designated"])])
 					// return 5
-                        return rScale(Math.abs(d["acres-designated"].split(",").join("")))
+                        return rScale(d["Total_acres"].split(",").join(""))
                     })
                 
+
                 // circle colors
                    .style("fill", function(d){
-                       console.log(d)
-                       if(d.party== "Democratic"){
-                           return "blue"
-                       }else{
-                           return "red"
-                       }
+                        return colorDictionary[d.Agency]
                    })
+                //    .style("opacity", .75)
             
             });
 

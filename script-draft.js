@@ -20,17 +20,17 @@ for(var i = 0; i<data[0].length; i++){
 
 
 var colors1 = [
-    "#c48b3a", //BLM
-    "#927c41", //FS
-    "#9d6b42", //FWS
-    "#bc422a", //NPS
+    "#c48b3a",  //BLM
+    "#927c41",  //FS
+    "#9d6b42",  //FWS
+    "#bc422a",  //NPS
     "#f2d59a",  //DOD
-    "eeeeee"    //other
+    "#000000"    //other
 ]
 var colors2 = ["#000000", "#eeeeee"] 
 
-pieChart(data[0][i],"outer",60,radius,svg,colors1,200)
-pieChart(data[1][i],"inner",40,60,svg,colors2,200)
+pieChart(data[0][i],"outer",62,radius,svg,colors1,200)
+pieChart(data[1][i],"inner",45,60,svg,colors2,200)
 
 // console.log(data[0][i]["State"])
 // console.log(data[1][i]["State"])

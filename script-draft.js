@@ -1,12 +1,12 @@
 {
     var w = 200
-        var h = 200
-        var margin = 20
-        var radius = Math.min(w, h) / 2 - margin
+    var h = 200
+    var margin = 20
+    var radius = Math.min(w, h) / 2 - margin
         
-        // loading data from two files 
-        var dataset1 = d3.csv("states/agency-per-state.csv")
-        var dataset2 = d3.csv("states/wild-per-state.csv")
+    // loading data from two files 
+    var dataset1 = d3.csv("states/agency-per-state.csv")
+    var dataset2 = d3.csv("states/wild-per-state.csv")
 }
         
 Promise.all([dataset1,dataset2])

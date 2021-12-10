@@ -1,38 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <title>basic located</title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    
-<script type="text/javascript"src="https://d3js.org/d3.v5.min.js"></script>
-  
-    <style>
-        html {
-            background-color: #fbf6e9;
-        }
-    </style>
-
-</head>
-
-<body>
-
-    <div id="pie-tooltip" class="hidden">
-        <p id="agency-name"><strong></strong></p> 
-        <p><span id="acreage">100</span> acres</p>
-    </div>
-
-	<script type="text/javascript"> 
         var w = 200
         var h = 200
         var margin = 20
         var radius = Math.min(w, h) / 2 - margin
         
         // loading data from two files 
-        var dataset1 = d3.csv("agency-per-state.csv")
-        var dataset2 = d3.csv("wild-per-state.csv")
+        var dataset1 = d3.csv("states/agency-per-state.csv")
+        var dataset2 = d3.csv("states/wild-per-state.csv")
         
     Promise.all([dataset1,dataset2])
 
@@ -41,7 +14,7 @@
         console.log(data[1])
 
         for(var i = 0; i<data[0].length; i++){
-            var svg = d3.select("body").append("svg").attr("width",w).attr("height",h)
+            var svg = d3.select("#state-donuts").append("svg").attr("width",w).attr("height",h)
 
         var colors1 = [
             "#c48b3a",  //BLM
@@ -51,7 +24,7 @@
             "#f2d59a",  //DOD
             "#000000"   //other
         ]
-        var colors2 = ["#000000", "#D4D4D4"] 
+        var colors2 = ["#D4D4D4", "#000000"] 
 
         pieChart(data[0][i],"outer",60,radius,svg,colors1,200)
         pieChart(data[1][i],"inner",40,58,svg,colors2,200)
@@ -107,7 +80,7 @@
                 d3.select(this)
                     .attr("stroke", "#ffffff")
                     .attr("stroke-width", 2)
-                d3.select("#pie-tooltip")
+                d3.select("#tooltipStates")
                 .style("position","fixed")
                 .style("left",event.clientX+"px")
                 .style("top",event.clientY+"px")
@@ -117,17 +90,15 @@
             .on("mouseout", function(d,i) {
                 d3.select(this)
                 .attr("stroke-width", 0);
+            })
 
-            // BROWSER TOOLTIP WORKS (FOR THE MOST PART)
+
+            // // BROWSER TOOLTIP WORKS (FOR THE MOST PART)
             // // browser tooltip
             // .append("title")
-            // // .attr("class",column+"_label")
+            // .attr("class",column+"_label")
             // .text(function(d){
             //     return d.data + " acres"; //HOW DO I ALSO ADD THE COLUMN NAME (AGENCY)?
-            })
-                
-    }
+            // })
 
-</script>
-</body>
-</html>
+    }

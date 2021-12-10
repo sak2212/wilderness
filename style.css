@@ -30,9 +30,15 @@ header, nav {
 }
 
 /* HOW DO I MAKE THE MENU FIXED? */
-/* .nav-fixed-top {
+.nav-fixed-top {
+    overflow: hidden;
     position: fixed;
-}  */
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+    opacity: 80%;
+} 
 
 ul.nav-bar {
     list-style: none;
@@ -49,6 +55,7 @@ ul.nav-bar {
     height: 100%;
     width: 50%;
     /* max-width: calc(1200px - (30px * 2)); */
+    margin-top: 160px;
     margin-right: auto;
     margin-left: auto;
     padding-right: 30px;

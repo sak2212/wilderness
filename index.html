@@ -67,12 +67,12 @@
             <p>...Dianist quis dessusda ania quo essed molupti osapella dento quis raturit ioriam as exped et accab ium derorepudis ea conseque iur sus elest auda num est dolest aut plautem as dolento ea at. Soluptae nestecu llacerundel imporehentis aciis es rempedi seque paruptas imendit landae necus nulpa de eum que la dis maiostrum et occaepeleni oditias molorat iberehendae nos dolore porepudaes repudae volorrum ex estiam. Pore sitibusam quos a consequam, quatur, quo viderovid ute re acestrum acererf erepelibus.</p>
             <p class="chart-title">Acres designated since 1964</p>
             <div id="chronology-plot"></div>
-            <p>Hover over a circle to learn more.</p>
+            <p>Hover over a circle to learn which legislations were passed during what year.</p>
             <div id="tooltipChronology" class="hidden"><p id="year"></p><p id="laws"></p></div>
             <br><br>
             <p class="chart-title">Individual units of wilderness designated since 1964</p>
             <div id="units-plot"></div>
-            <p>Hover over a circle to learn more.</p>
+            <p>Hover over a circle to learn more about when individual wilderness units were designated.</p>
             <div id="tooltipUnits" class="hidden"><p id="year"></p><p id="name"></p><p id="size"></p>
             </section>
 
@@ -104,7 +104,7 @@
             <!-- BAR - WILDERNESS PER AGENCY -->
             <script type="text/javascript">
     
-            var colors = [
+            var colors1 = [
                 "#c48b3a",  //BLM
                 "#927c41",  //FS
                 "#9d6b42",  //FWS
@@ -176,7 +176,7 @@
                 .attr("width", width / 6)
                 .attr("height", function(d) { return height - y(d.acres); })
                 .attr("fill", function(d, i){
-                       return colors[i]
+                       return colors1[i]
                    })        
                 }
     

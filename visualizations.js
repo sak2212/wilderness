@@ -245,7 +245,8 @@ var dataset, xScale, yScale, xAxis, yAxis, cScale;  // empty
         // return 5
             return rScale(d["Unit_acres"].split(",").join(""))
         })
-    
+        .style("cursor", "pointer")
+
 
         // circle colors
        .style("fill", function(d){
@@ -336,7 +337,15 @@ Promise.all([dataset1,dataset2])
         .attr("y", h/2)
         .attr("text-anchor", "middle")
     // ADD OVERFLOW FOR LONGER NAMES?
-    // ADD TOTAL ACREAGE OF STATE TOO    
+    
+    // ADD TOTAL ACREAGE OF STATE TOO  
+    // svg.append("text")
+    //     .text(data[1][i]["wilderness_acres"+"non-wilderness"])
+    //     .attr("x", w/2)
+    //     .attr("y", (h/2) + 15)
+    //     .attr("text-anchor", "middle")
+    //     .style("font-size", ".75em")
+    
     }
     
 })
@@ -382,12 +391,12 @@ function pieChart(data,className,inner,outer,svg,colors,x){
             .style("position","fixed")
             .style("left",event.clientX+"px")
             .style("top",event.clientY+"px")
-            .style("background-color", "white")
         })
 
         .on("mouseout", function(d,i) {
             d3.select(this)
             .attr("stroke-width", 0);
+            d3.select("#tooltipStates").classed("hidden", true);
         })
 
 }

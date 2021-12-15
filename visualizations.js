@@ -1,15 +1,15 @@
 Promise.all([
-    d3.csv("chronology/wild-per-year.csv"),    //0
-    d3.csv("units/wild-units-new.csv"),   //1
-    d3.csv("states/agency-per-state.csv"), //2
-    d3.csv("states/wild-per-state.csv"),   //3
-    d3.csv("introduction/fed-total.csv")         //4
+    d3.csv("chronology/wild-per-year.csv"),     //0
+    d3.csv("units/wild-units-new.csv"),         //1
+    d3.csv("states/agency-per-state.csv"),      //2
+    d3.csv("states/wild-per-state.csv"),        //3
+    d3.csv("introduction/fed-total.csv")        //4
     ])
         .then(function(data){
             drawChronology(data[0])
             drawUnits(data[1])
             drawStates()
-            // drawBar1(data[4])
+            // drawBarTotal(data[4])
         });
 
 
@@ -124,7 +124,10 @@ function drawChronology(data){
                     .text(d.year) 
                 d3.select("#tooltipChronology")
                     .select("#laws")
-                    .text(d.legislation);
+                    .text(d.legislation)
+                d3.select("#tooltipChronology")
+                    .select("#acres-designated")
+                    .text(d["acres-designated"] + " acres");
                 })
 
                 //hide tooltip
@@ -136,13 +139,14 @@ function drawChronology(data){
                 svg.append("g")
                     .attr("class", "axis")
                     .attr("transform", "translate(0," + (h - padding) + ")")
-                    .call(xAxis);
+                    .call(xAxis)
+                    .style("stroke", 0);
 			
-			    //create Y axis
-			    svg.append("g")
-                    .attr("class", "axis")
-                    .attr("transform", "translate(" + padding + ",0)")
-                    .call(yAxis);
+			    // //create Y axis
+			    // svg.append("g")
+                //     .attr("class", "axis")
+                //     .attr("transform", "translate(" + padding + ",0)")
+                //     .call(yAxis);
 
             };
 
@@ -265,10 +269,10 @@ var dataset, xScale, yScale, xAxis, yAxis, cScale;  // empty
                 .style("top", yPosition + "px")
                 .select("#year")
                 .text(d.year) 
-            d3.select("#name")
-                .text(d.Name)
             d3.select("#size")
-                .text(d.Unit_acres);
+                .text(d.Unit_acres + " acres")
+            d3.select("#name")
+                .text(d.Name);
         })
 
         //hide tooltip
@@ -321,9 +325,9 @@ Promise.all([dataset1,dataset2])
         "#9d6b42",  //FWS
         "#bc422a",  //NPS
         "#f2d59a",  //DOD
-        "#000000"   //other
+        "#D4D4D4"   //other
     ]
-    var colors2 = ["#D4D4D4", "#000000"] 
+    var colors2 = ["#000000", "#D4D4D4"] 
 
     pieChart(data[0][i],"outer",60,radius,svg,colors1,200)
     pieChart(data[1][i],"inner",40,58,svg,colors2,200)
@@ -401,13 +405,12 @@ function pieChart(data,className,inner,outer,svg,colors,x){
         })
 
 }
-}
+};
 
 
 
-
-// ///// BAR-TOTAL 
-// function drawBar1(data){
+///// BAR-TOTAL 
+// function drawBarTotal(data){
 
 //     // chart width and height
 //     var w = 1000;
@@ -415,9 +418,9 @@ function pieChart(data,className,inner,outer,svg,colors,x){
 //     var barPadding = 5
 //     var margin = 200
 //     var xMargin = 40
-    
+
 //     var dataset; 
-    
+
 //     var colors = [
 //     "#d4d4d4",	//non-federal
 //     "#c48b3a",  //BLM
@@ -427,147 +430,60 @@ function pieChart(data,className,inner,outer,svg,colors,x){
 //     "#f2d59a",  //DOD
 //     "#000000"   //other
 //     ]
-    
+
 //     var xScale = d3.scaleLinear().domain([
 //         0
 //         ,
 //         d3.max(dataset, function(d){return parseInt(d.TotalAcres);})
 //         ])
 //         .range([0,w])
-    
+
 //     var xAxis = d3.axisBottom()
 //         .scale(xScale)
 //         .ticks(10)
-    
+
 //     // SVG element
 //     var svg = d3.select("#bar-total")
 //                 .append("svg")
 //                 .attr("width", w)
 //                 .attr("height", h+xMargin);
-    
+
 //     // create bars			
 //     svg.selectAll("rect")
-//        .data(dataset)
-//        .enter()
-//        .append("rect")
-//        .attr("y", function(d, i) {
-//            return i * (h / dataset.length)
-//        })
-//        .attr("x", function(d) {
-//                return 0 + margin
-//        })
-//        .attr("height", h / dataset.length - barPadding)
-//        .attr("width", function(d) {
-//                return xScale(d.TotalAcres)
-//        })
-//        .attr("fill", function(d, i){
-//            return colors[i]
-//        })
-    
+//         .data(dataset)
+//         .enter()
+//         .append("rect")
+//         .attr("y", function(d, i) {
+//             return i * (h / dataset.length)
+//         })
+//         .attr("x", function(d) {
+//                 return 0 + margin
+//         })
+//         .attr("height", h / dataset.length - barPadding)
+//         .attr("width", function(d) {
+//                 return xScale(d.TotalAcres)
+//         })
+//         .attr("fill", function(d, i){
+//             return colors[i]
+//         })
+
 //     svg.selectAll("labels")
-//        .data(dataset)
-//        .enter()
-//        .append("text")
-//        .text(function(d){
-//            return d.Agency;
-//        })
-//        .attr("y", function(d, i) {
-//            return (i * (h / dataset.length)) +28 // HOW DO I CENTER TEXT IN MIDDLE OF BAR?
-//        })
+//         .data(dataset)
+//         .enter()
+//         .append("text")
+//         .text(function(d){
+//             return d.Agency;
+//         })
+//         .attr("y", function(d, i) {
+//             return (i * (h / dataset.length)) +28 // HOW DO I CENTER TEXT IN MIDDLE OF BAR?
+//         })
 //         .attr("x", margin - 10)
-//            .attr("text-anchor", "end")
-    
+//         .attr("text-anchor", "end")
+
 //     // xAXIS 
 //     svg.append("g")
-//        .attr("class", "axis")
-//        .attr("transform", "translate(" + margin +"," + h + ")")			   
-//        .call(xAxis)
-    
-//     };
+//         .attr("class", "axis")
+//         .attr("transform", "translate(" + margin +"," + h + ")")			   
+//         .call(xAxis)
 
-
-
-
-// ///// BAR-WILD
-// {
-// var colors = [
-//     "#c48b3a",  //BLM
-//     "#927c41",  //FS
-//     "#9d6b42",  //FWS
-//     "#bc422a",  //NPS
-//     "#f2d59a",  //DOD
-//     ]
-
-// var data_total = [
-//     {agency: "Bureau of Land Management", acres: 244400000},
-//     {agency: "Forest Service", acres: 192900000},
-//     {agency: "Fish and Wildlife Service", acres: 89200000},
-//     {agency: "National Park Service", acres: 79900000},
-//     {agency: "Department of Defense", acres: 8800000}
-// ];
-    
-// var data_wilderness = [
-//     {agency: "Bureau of Land Management", acres: 9986645},
-//     {agency: "Forest Service", acres: 36670166},
-//     {agency: "Fish and Wildlife Service", acres: 20702709},
-//     {agency: "National Park Service", acres: 44337407},
-//     {agency: "Department of Defense", acres: 0}
-// ];
-
-// // set the dimensions and margins of the graph
-// var margin = {top: 20, right: 60, bottom: 60, left: 60},
-//     width = 800 - margin.left - margin.right,
-//     height = 400 - margin.top - margin.bottom;
-
-
-// // append the svg object to the body of the page
-// var svg = d3.select("#bar-wild")
-//     .append("svg")
-//     .attr("width", width + margin.left + margin.right)
-//     .attr("height", height + margin.top + margin.bottom)
-//     .append("g")
-//     .attr("transform",
-//         "translate(" + margin.left + "," + margin.top + ")");
-
-// // X axis
-// var x = d3.scaleBand()
-// .range([ 0, width ])
-// .domain(data_total.map(function(d) { return d.agency; }))
-// .padding(0.2);
-// svg.append("g")
-// .attr("transform", "translate(0," + height + ")")
-// .call(d3.axisBottom(x))
-
-// // Add Y axis
-// var y = d3.scaleLinear()
-//     .domain([0, 244400000])
-//     .range([ height, 0]);
-// svg.append("g")
-//     .attr("class", "myYaxis")
-//     .call(d3.axisLeft(y));
-
-// // A function that create / update the plot for a given variable:
-// function update(data) {
-
-// var u = svg.selectAll("rect")
-//     .data(data)
-
-// u
-//     .enter()
-//     .append("rect")
-//     .merge(u)
-//     .transition()
-//     .duration(1000)
-//     .attr("x", function(d) { return x(d.agency); })
-//     .attr("y", function(d) { return y(d.acres); })
-//     .attr("width", width / 6)
-//     .attr("height", function(d) { return height - y(d.acres); })
-//     .attr("fill", function(d, i){
-//            return colors[i]
-//        })        
-//     }
-
-// // Initialize the plot with the first dataset
-// update(data_total)
-
-// }
+// };

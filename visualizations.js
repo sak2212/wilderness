@@ -385,7 +385,8 @@ function pieChart(data,className,inner,outer,svg,colors,x){
         .attr("d", arc)
 
         .on("mouseover", function(d,i) {
-            console.log(d,i)
+            // console.log(d,i)
+            d3.select("#tooltipStates").style("visibility","visible")
             d3.select("#agency-name").html(labels[i])
             d3.select("#acreage").html(d.data)
             d3.select(this)
@@ -399,9 +400,10 @@ function pieChart(data,className,inner,outer,svg,colors,x){
 
         .on("mouseout", function(d,i) {
             d3.select(this)
-            .attr("stroke-width", 0);
+                .attr("stroke-width", 0);
             d3.select("#tooltipStates")
-                .classed("hidden", true);        
+                .classed("hidden", true);
+            d3.select("#tooltipStates").style("visibility","hidden")        
         })
 
 }

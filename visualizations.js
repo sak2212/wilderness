@@ -60,7 +60,7 @@ function drawChronology(data){
                     return parseInt(d["acres-designated"].split(",").join(""));
                 })
             ])
-            .range([2,100]);
+            .range([2,80]);
                    
                     
         //define X axis
@@ -117,6 +117,7 @@ function drawChronology(data){
                 var xPosition = parseFloat(d3.select(this).attr("cx"));
                 var yPosition = parseFloat(d3.select(this).attr("cy"));
                         
+                d3.select("#tooltipChronology").style("visibility","visible")
                 d3.select("#tooltipChronology")
                     .style("left", xPosition + "px")
                     .style("top", yPosition + "px")
@@ -132,7 +133,8 @@ function drawChronology(data){
 
                 //hide tooltip
                 .on("mouseout",function(d,i){
-				   d3.select("#tooltipChronology").classed("hidden", true);
+				   d3.select("#tooltipChronology").classed("hidden", true)
+                   d3.select("#tooltipChronology").style("visibility","hidden");
                 })                
             
                 //create x axis
@@ -186,7 +188,7 @@ var dataset, xScale, yScale, xAxis, yAxis, cScale;  // empty
     
     yScale = d3.scaleLinear() 
         .domain([
-            0,
+            -30,
             d3.max(data, function(d){ 
                 return Math.sqrt(parseInt(d["Unit_acres"].split(",").join("")));
             })
@@ -264,6 +266,7 @@ var dataset, xScale, yScale, xAxis, yAxis, cScale;  // empty
 
             var xPosition = parseFloat(d3.select(this).attr("cx"));
             var yPosition = parseFloat(d3.select(this).attr("cy"));
+            d3.select("#tooltipUnits").style("visibility","visible")
             d3.select("#tooltipUnits")
                 .style("left", xPosition + "px")
                 .style("top", yPosition + "px")
@@ -278,7 +281,8 @@ var dataset, xScale, yScale, xAxis, yAxis, cScale;  // empty
         //hide tooltip
         .on("mouseout",function(d,i){
            d3.select(this).attr("fill","black")
-           d3.select("#tooltipUnits").classed("hidden", true);
+           d3.select("#tooltipUnits").classed("hidden", true)
+           d3.select("#tooltipUnits").style("visibility","hidden");
         })
 
 

@@ -53,20 +53,22 @@ ul.nav-bar {
 
 .container {
     height: 100%;
-    width: 50%;
-    /* max-width: calc(1200px - (30px * 2)); */
-    margin-top: 160px;
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: 30px;
-    padding-top: 30px;
-    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
     align-content: center;
+    margin-top: 160px;
+    margin-right: 20%;
+    margin-left: 20%;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-left: 30px;
 }
 
-div {
-    height: auto;
-    width: auto;
+#chronology-plot, #units-plot, #bar-total {
+    max-width: none;
+    position: relative;
+    display: block;
+    margin: auto;
 }
 
 .domain {
